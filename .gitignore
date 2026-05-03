@@ -1,0 +1,26 @@
+# Secrets — NEVER commit
+.env
+.env.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+*.egg-info/
+
+# Generated output and user inputs
+output/*
+!output/.gitkeep
+inputs/*
+!inputs/.gitkeep
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp

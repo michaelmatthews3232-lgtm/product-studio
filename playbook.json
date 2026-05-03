@@ -1,0 +1,184 @@
+{
+  "gigs": [
+    {
+      "id": "soap",
+      "name": "Soap Product Photography",
+      "subtitle": "Cozy/rustic scenes for Etsy soap sellers",
+      "price_range": "$10–$35",
+      "automation": "high",
+      "category": "Photography → AI-Generated Art",
+      "steps": [
+        {"id": "s1", "text": "Add cozy/rustic templates to pipeline", "done": true},
+        {"id": "s2", "text": "Generate 3 portfolio images with a real soap photo", "done": true},
+        {"id": "s3", "text": "Create Fiverr gig with correct category and description", "done": true},
+        {"id": "s4", "text": "Set Basic $10 / Standard $20 / Premium $35 packages", "done": true},
+        {"id": "s5", "text": "Offer first 3 orders at $5 to build reviews fast", "done": false},
+        {"id": "s6", "text": "Reach 5 reviews, raise to full price", "done": false},
+        {"id": "s7", "text": "Swap portfolio images for real buyer soap photos after first orders", "done": false}
+      ]
+    },
+    {
+      "id": "candle",
+      "name": "Candle Product Photography",
+      "subtitle": "Cozy scenes for Etsy candle sellers",
+      "price_range": "$10–$35",
+      "automation": "high",
+      "category": "Photography → AI-Generated Art",
+      "steps": [
+        {"id": "s1", "text": "Add candle templates to pipeline (already done)", "done": true},
+        {"id": "s2", "text": "Get or create a candle photo to use for portfolio", "done": false},
+        {"id": "s3", "text": "Drag candle photo onto 'Candle Orders' shortcut to generate portfolio", "done": false},
+        {"id": "s4", "text": "Pick 3 best output images for Fiverr portfolio", "done": false},
+        {"id": "s5", "text": "Create Fiverr gig: same structure as soap gig, swap 'soap' for 'candle'", "done": false},
+        {"id": "s6", "text": "Set Basic $10 / Standard $20 / Premium $35 packages", "done": false},
+        {"id": "s7", "text": "Offer first 3 orders at $5 to build reviews fast", "done": false},
+        {"id": "s8", "text": "Reach 5 reviews, raise to full price", "done": false}
+      ]
+    },
+    {
+      "id": "jewelry",
+      "name": "Jewelry & Accessories Product Photos",
+      "subtitle": "Elegant styled scenes for Etsy jewelry sellers",
+      "price_range": "$15–$40",
+      "automation": "high",
+      "category": "Photography → AI-Generated Art",
+      "steps": [
+        {"id": "s1", "text": "Add 'jewelry' product type + 8 templates to templates.py (velvet tray, marble, linen, etc.)", "done": false},
+        {"id": "s2", "text": "Add 'jewelry' to PRODUCT_TEMPLATES in templates.py", "done": false},
+        {"id": "s3", "text": "Create go_jewelry.bat and Desktop shortcut", "done": false},
+        {"id": "s4", "text": "Add Jewelry radio button to dashboard New Order modal", "done": false},
+        {"id": "s5", "text": "Test pipeline with a jewelry photo (rings, necklaces, earrings)", "done": false},
+        {"id": "s6", "text": "Generate 3 portfolio images, pick the best", "done": false},
+        {"id": "s7", "text": "Create Fiverr gig: 'I will create professional product photos for handmade jewelry'", "done": false},
+        {"id": "s8", "text": "Offer first 3 orders at $5 to build reviews", "done": false}
+      ]
+    },
+    {
+      "id": "pet_portraits",
+      "name": "Custom AI Pet Portraits",
+      "subtitle": "Stylized oil painting, watercolor, royal portrait styles",
+      "price_range": "$15–$40",
+      "automation": "high",
+      "category": "Graphics & Design → AI Art & Prompts",
+      "steps": [
+        {"id": "s1", "text": "Add 'pet' product type + 8 style templates (oil painting, watercolor, royal portrait, superhero, cartoon, renaissance, anime, botanical)", "done": false},
+        {"id": "s2", "text": "Test pipeline with a pet photo (use any dog/cat stock photo)", "done": false},
+        {"id": "s3", "text": "Generate 3 portfolio images across different styles", "done": false},
+        {"id": "s4", "text": "Create go_pets.bat and Desktop shortcut", "done": false},
+        {"id": "s5", "text": "Add Pet Portraits to dashboard New Order modal", "done": false},
+        {"id": "s6", "text": "Create Fiverr gig: 'I will create a custom AI portrait of your pet'", "done": false},
+        {"id": "s7", "text": "Set Basic $15 (1 style) / Standard $30 (3 styles) / Premium $50 (all 8 styles)", "done": false},
+        {"id": "s8", "text": "Offer first 3 orders at $8 to build reviews", "done": false}
+      ]
+    },
+    {
+      "id": "real_estate",
+      "name": "Real Estate Virtual Staging",
+      "subtitle": "Empty rooms transformed into furnished lifestyle spaces",
+      "price_range": "$25–$120",
+      "automation": "high",
+      "category": "Graphics & Design → AI Art & Prompts",
+      "steps": [
+        {"id": "s1", "text": "Add 8 interior style templates to templates.py", "done": true},
+        {"id": "s2", "text": "Add 'staging' to PRODUCT_TEMPLATES and dashboard modal", "done": true},
+        {"id": "s3", "text": "Create go_staging.bat and Desktop shortcut", "done": true},
+        {"id": "s4", "text": "Find or generate a test empty room photo (use Google Images: 'empty living room')", "done": false},
+        {"id": "s5", "text": "Drag room photo onto 'Staging Orders' shortcut to generate portfolio", "done": false},
+        {"id": "s6", "text": "Pick 3 best before/after pairs for Fiverr portfolio", "done": false},
+        {"id": "s7", "text": "Create Fiverr gig: 'I will virtually stage your empty room with AI'", "done": false},
+        {"id": "s8", "text": "Set Basic $25 (1 room, 2 styles) / Standard $60 (3 rooms) / Premium $120 (6 rooms)", "done": false},
+        {"id": "s9", "text": "Target real estate agents in description: 'MLS-ready virtual staging in 24 hours'", "done": false},
+        {"id": "s10", "text": "Offer first 3 orders at $15 to build reviews", "done": false}
+      ]
+    },
+    {
+      "id": "backgrounds",
+      "name": "Lifestyle Background Packs",
+      "subtitle": "E-commerce scene packs sellers use for their own product photos",
+      "price_range": "$15–$50",
+      "automation": "very high",
+      "category": "Graphics & Design → AI Art & Prompts",
+      "steps": [
+        {"id": "s1", "text": "Run pipeline without a product photo to generate pure background scenes (modify generate.py to allow no reference)", "done": false},
+        {"id": "s2", "text": "Create 5 themed packs: Spa/Skincare, Rustic Kitchen, Farmhouse, Holiday, Luxury", "done": false},
+        {"id": "s3", "text": "Generate 20 backgrounds per pack (100 total)", "done": false},
+        {"id": "s4", "text": "Zip each pack and store in output/background_packs/", "done": false},
+        {"id": "s5", "text": "Create Fiverr gig: 'I will create AI lifestyle backgrounds for your product photos'", "done": false},
+        {"id": "s6", "text": "Set Basic $15 (5 backgrounds, 1 theme) / Standard $30 (15 backgrounds) / Premium $50 (30 backgrounds, 3 themes)", "done": false},
+        {"id": "s7", "text": "This gig requires no buyer photo — deliver pre-made packs, lowest effort gig", "done": false}
+      ]
+    },
+    {
+      "id": "headshots",
+      "name": "AI LinkedIn Headshots",
+      "subtitle": "Professional headshots from casual selfies",
+      "price_range": "$20–$75",
+      "automation": "high",
+      "category": "Photography → AI-Generated Art",
+      "steps": [
+        {"id": "s1", "text": "Research Flux PuLID or fal.ai portrait model for face-preserving headshots", "done": false},
+        {"id": "s2", "text": "Set up headshot pipeline: buyer selfie → face lock → professional background", "done": false},
+        {"id": "s3", "text": "Create 10 background templates (office blur, outdoor, neutral gray, bookshelf, etc.)", "done": false},
+        {"id": "s4", "text": "Test with your own photo — verify likeness is preserved", "done": false},
+        {"id": "s5", "text": "Generate 5 portfolio before/after examples", "done": false},
+        {"id": "s6", "text": "Add Headshots to dashboard New Order modal", "done": false},
+        {"id": "s7", "text": "Create Fiverr gig: 'I will create professional AI LinkedIn headshots from your selfies'", "done": false},
+        {"id": "s8", "text": "Set Basic $20 (5 headshots) / Standard $40 (15) / Premium $75 (30)", "done": false},
+        {"id": "s9", "text": "Specialize: target tech workers, job seekers, remote teams in description", "done": false}
+      ]
+    },
+    {
+      "id": "book_covers",
+      "name": "Book Covers (Amazon KDP)",
+      "subtitle": "Genre-matched covers for self-published authors",
+      "price_range": "$20–$75",
+      "automation": "medium",
+      "category": "Graphics & Design → Book Design",
+      "steps": [
+        {"id": "s1", "text": "Create genre style packs: Thriller, Romance, Fantasy, Self-Help, Mystery (8 prompts each)", "done": false},
+        {"id": "s2", "text": "Create Canva templates for each genre: correct KDP dimensions, font treatments, spine layout", "done": false},
+        {"id": "s3", "text": "Generate 3 sample covers per genre for portfolio (15 total)", "done": false},
+        {"id": "s4", "text": "Build workflow: Flux generates artwork → download → drop into Canva template → add buyer's title/name → export", "done": false},
+        {"id": "s5", "text": "Create Fiverr gig: 'I will design an AI book cover for your Amazon KDP novel'", "done": false},
+        {"id": "s6", "text": "Set Basic $20 (1 cover) / Standard $40 (3 variations) / Premium $75 (full series pack)", "done": false},
+        {"id": "s7", "text": "Note: this gig is 75% automated — manual step is Canva text layout per order (5-10 min)", "done": false}
+      ]
+    },
+    {
+      "id": "interior_design",
+      "name": "Interior Design Visualization",
+      "subtitle": "Room redesigns in any style for homeowners and Airbnb hosts",
+      "price_range": "$25–$100",
+      "automation": "medium-high",
+      "category": "Graphics & Design → AI Art & Prompts",
+      "steps": [
+        {"id": "s1", "text": "Add 'interior' product type + 8 style templates (Scandinavian, modern farmhouse, Japanese minimalist, bohemian, industrial, coastal, luxury, mid-century)", "done": false},
+        {"id": "s2", "text": "Test with a room photo (use a stock photo of a living room)", "done": false},
+        {"id": "s3", "text": "Generate 3 before/after pairs for portfolio", "done": false},
+        {"id": "s4", "text": "Add Interior Design to dashboard New Order modal", "done": false},
+        {"id": "s5", "text": "Create Fiverr gig: 'I will redesign your room with AI interior visualization'", "done": false},
+        {"id": "s6", "text": "Target Airbnb hosts in description: 'See your space as a styled Airbnb listing before you renovate'", "done": false},
+        {"id": "s7", "text": "Set Basic $25 (1 room, 2 styles) / Standard $60 (3 rooms) / Premium $100 (5 rooms, 3 styles each)", "done": false},
+        {"id": "s8", "text": "Offer first 3 orders at $15 to build reviews", "done": false}
+      ]
+    },
+    {
+      "id": "childrens_book",
+      "name": "Children's Book Illustration",
+      "subtitle": "Consistent character illustrations for self-published kids books",
+      "price_range": "$50–$250",
+      "automation": "medium",
+      "category": "Graphics & Design → Illustration",
+      "steps": [
+        {"id": "s1", "text": "Research character consistency workflow: IP-Adapter + Flux Kontext for locking character look across scenes", "done": false},
+        {"id": "s2", "text": "Create 5 illustration style templates: watercolor storybook, cartoon flat-color, pencil sketch, digital painting, vintage", "done": false},
+        {"id": "s3", "text": "Test with a character description + sample scenes (3 page test)", "done": false},
+        {"id": "s4", "text": "Generate a 5-page sample book spread as portfolio", "done": false},
+        {"id": "s5", "text": "Create Fiverr gig: 'I will illustrate your children's book with consistent AI art'", "done": false},
+        {"id": "s6", "text": "Set Basic $50 (5 illustrations) / Standard $120 (15 illustrations) / Premium $250 (30 illustrations)", "done": false},
+        {"id": "s7", "text": "Note: this is the most manual gig (30-40% hands-on per order) — save for last", "done": false},
+        {"id": "s8", "text": "Specialize by style to reduce variables: launch with watercolor storybook only first", "done": false}
+      ]
+    }
+  ]
+}
