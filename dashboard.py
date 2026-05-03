@@ -575,6 +575,12 @@ function selectTier(el) {
 
 async function submitQuick() {
   if (!pendingFile) return;
+  const max = TIER_MAX[pendingTier] || 1;
+  if (selectedTemplates.length === 0) {
+    const lbl = document.getElementById('scene-count-label');
+    if (lbl) { lbl.textContent = 'pick at least 1 scene'; lbl.style.color = '#e05252'; }
+    return;
+  }
   const product = document.getElementById('qp-product').value;
   const buyer = document.getElementById('qp-buyer').value.trim() || 'Unknown Buyer';
 
@@ -734,13 +740,10 @@ async function loadTemplateOptions(product) {
   selectedTemplates = [];
   const res = await fetch('/templates/' + product);
   const { templates } = await res.json();
-  const max = TIER_MAX[pendingTier] || 1;
-  const autoSelect = templates.slice(0, max);
-  selectedTemplates = [...autoSelect];
   const container = document.getElementById('template-pills');
   if (!container) return;
   container.innerHTML = templates.map(name =>
-    '<div class="tpl-pill' + (autoSelect.includes(name) ? ' selected' : '') + '" data-name="' + name + '" onclick="toggleTemplate(this)">' +
+    '<div class="tpl-pill" data-name="' + name + '" onclick="toggleTemplate(this)">' +
     formatTemplateName(name) + '</div>'
   ).join('');
   updateSceneCountLabel();
@@ -782,7 +785,14 @@ function updateTemplatePillStates() {
 function updateSceneCountLabel() {
   const max = TIER_MAX[pendingTier] || 1;
   const lbl = document.getElementById('scene-count-label');
-  if (lbl) lbl.textContent = '(' + selectedTemplates.length + ' of ' + max + ' selected)';
+  if (!lbl) return;
+  if (selectedTemplates.length === 0) {
+    lbl.textContent = '— pick ' + max;
+    lbl.style.color = '#6d4fc7';
+  } else {
+    lbl.textContent = selectedTemplates.length + ' / ' + max + ' chosen';
+    lbl.style.color = selectedTemplates.length >= max ? '#4caf50' : '#e8a020';
+  }
 }
 
 loadOrders();
