@@ -72,9 +72,15 @@ def save_playbook(pb):
         json.dump(pb, f, indent=2)
 
 
-def run_order_bg(order_id, reference_image, product, tier, buyer_name):
+def run_order_bg(order_id, reference_image, product, tier, buyer_name, selected_template_names=None):
     tier_config = TIERS[tier]
-    templates = PRODUCT_TEMPLATES[product][: tier_config["template_count"]]
+    all_templates = PRODUCT_TEMPLATES[product]
+    if selected_template_names:
+        templates = [t for t in all_templates if t["name"] in selected_template_names]
+        if not templates:
+            templates = all_templates[:tier_config["template_count"]]
+    else:
+        templates = all_templates[:tier_config["template_count"]]
     output_root = os.path.join(DATA_DIR, "output", product, order_id)
     os.makedirs(output_root, exist_ok=True)
 
@@ -128,6 +134,8 @@ def create_order():
     product = request.form.get("product", "soap")
     tier = request.form.get("tier", "basic")
     buyer_name = request.form.get("buyer_name", "").strip() or "Unknown Buyer"
+    templates_raw = request.form.get("templates", "")
+    selected_template_names = [s.strip() for s in templates_raw.split(",") if s.strip()]
 
     if not file or file.filename == "":
         return jsonify({"error": "No photo uploaded"}), 400
@@ -146,6 +154,7 @@ def create_order():
         "buyer_name": buyer_name,
         "product": product,
         "tier": tier,
+        "scenes": selected_template_names,
         "photo_path": photo_path,
         "status": "queued",
         "zip_path": None,
@@ -161,7 +170,7 @@ def create_order():
 
     thread = threading.Thread(
         target=run_order_bg,
-        args=(order_id, photo_path, product, tier, buyer_name),
+        args=(order_id, photo_path, product, tier, buyer_name, selected_template_names or None),
         daemon=True,
     )
     thread.start()
@@ -230,6 +239,14 @@ def detect_photo():
             os.remove(tmp_path)
 
     return jsonify({"product": result})
+
+
+@app.route("/templates/<product>")
+def get_product_templates(product):
+    if product not in PRODUCT_TEMPLATES:
+        return jsonify({"error": "Invalid product"}), 400
+    names = [t["name"] for t in PRODUCT_TEMPLATES[product]]
+    return jsonify({"templates": names})
 
 
 # --- HTML ---
@@ -322,6 +339,10 @@ header h1 { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: -0.3
 .tier-pills { display: flex; gap: 6px; }
 .tier-pill { padding: 7px 12px; border-radius: 7px; border: 1px solid #252525; background: #111; color: #666; font-size: 12px; font-weight: 700; cursor: pointer; }
 .tier-pill.selected { border-color: #6d4fc7; background: #17122a; color: #c4a8ff; }
+.tpl-pills { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 2px; }
+.tpl-pill { padding: 5px 10px; border-radius: 7px; border: 1px solid #252525; background: #111; color: #555; font-size: 11px; font-weight: 600; cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+.tpl-pill.selected { border-color: #6d4fc7; background: #17122a; color: #c4a8ff; }
+.tpl-pill.disabled { opacity: 0.3; cursor: not-allowed; }
 .run-btn { background: #6d4fc7; color: #fff; border: none; padding: 8px 18px; border-radius: 7px; font-size: 13px; font-weight: 700; cursor: pointer; height: 36px; }
 .run-btn:hover { background: #5e42b0; }
 .cancel-btn { background: none; border: none; color: #444; font-size: 13px; cursor: pointer; padding: 8px; }
@@ -414,7 +435,7 @@ header h1 { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: -0.3
               Product
               <span class="detect-badge" id="detect-badge"></span>
             </div>
-            <select class="qf-select" id="qp-product">
+            <select class="qf-select" id="qp-product" onchange="loadTemplateOptions(this.value)">
               <option value="soap">Soap</option>
               <option value="candle">Candle</option>
               <option value="staging">Staging</option>
@@ -431,6 +452,10 @@ header h1 { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: -0.3
               <div class="tier-pill" data-tier="standard" onclick="selectTier(this)">Standard</div>
               <div class="tier-pill" data-tier="premium" onclick="selectTier(this)">Premium</div>
             </div>
+          </div>
+          <div class="qf-field" style="flex-basis:100%">
+            <div class="qf-label">Scenes <span id="scene-count-label" style="color:#555;font-weight:400;text-transform:none;letter-spacing:0"></span></div>
+            <div class="tpl-pills" id="template-pills"></div>
           </div>
           <button class="run-btn" onclick="submitQuick()">Run Pipeline</button>
           <button class="cancel-btn" onclick="cancelQuick()">&#10005;</button>
@@ -511,6 +536,8 @@ function openQuickPanel(file) {
   badge.className = 'detect-badge detecting';
   badge.textContent = 'detecting...';
 
+  loadTemplateOptions(sel.value);
+
   const fd = new FormData();
   fd.append('photo', file);
   fetch('/detect', { method: 'POST', body: fd })
@@ -520,6 +547,7 @@ function openQuickPanel(file) {
         sel.value = product;
         badge.className = 'detect-badge detected';
         badge.textContent = 'auto-detected';
+        loadTemplateOptions(product);
       } else {
         badge.className = '';
         badge.textContent = '';
@@ -541,6 +569,8 @@ function selectTier(el) {
   document.querySelectorAll('.tier-pill').forEach(p => p.classList.remove('selected'));
   el.classList.add('selected');
   pendingTier = el.dataset.tier;
+  const product = document.getElementById('qp-product').value;
+  loadTemplateOptions(product);
 }
 
 async function submitQuick() {
@@ -553,6 +583,7 @@ async function submitQuick() {
   fd.append('buyer_name', buyer);
   fd.append('product', product);
   fd.append('tier', pendingTier);
+  fd.append('templates', selectedTemplates.join(','));
 
   cancelQuick();
   const res = await fetch('/orders', { method: 'POST', body: fd });
@@ -690,6 +721,68 @@ async function toggleStep(gid, sid, done) {
     if (bar) bar.style.width = Math.round(d/t*100) + '%';
     if (lbl2) lbl2.textContent = d + '/' + t;
   }
+}
+
+let selectedTemplates = [];
+const TIER_MAX = { basic: 1, standard: 2, premium: 8 };
+
+function formatTemplateName(name) {
+  return name.split('_').map(w => w[0].toUpperCase() + w.slice(1)).join(' ');
+}
+
+async function loadTemplateOptions(product) {
+  selectedTemplates = [];
+  const res = await fetch('/templates/' + product);
+  const { templates } = await res.json();
+  const max = TIER_MAX[pendingTier] || 1;
+  const autoSelect = templates.slice(0, max);
+  selectedTemplates = [...autoSelect];
+  const container = document.getElementById('template-pills');
+  if (!container) return;
+  container.innerHTML = templates.map(name =>
+    '<div class="tpl-pill' + (autoSelect.includes(name) ? ' selected' : '') + '" data-name="' + name + '" onclick="toggleTemplate(this)">' +
+    formatTemplateName(name) + '</div>'
+  ).join('');
+  updateSceneCountLabel();
+  updateTemplatePillStates();
+}
+
+function toggleTemplate(el) {
+  if (el.classList.contains('disabled')) return;
+  const name = el.dataset.name;
+  const max = TIER_MAX[pendingTier] || 1;
+  if (el.classList.contains('selected')) {
+    el.classList.remove('selected');
+    selectedTemplates = selectedTemplates.filter(n => n !== name);
+  } else {
+    if (selectedTemplates.length >= max) {
+      if (max === 1) {
+        document.querySelectorAll('.tpl-pill.selected').forEach(p => p.classList.remove('selected'));
+        selectedTemplates = [];
+      } else { return; }
+    }
+    el.classList.add('selected');
+    selectedTemplates.push(name);
+  }
+  updateSceneCountLabel();
+  updateTemplatePillStates();
+}
+
+function updateTemplatePillStates() {
+  const max = TIER_MAX[pendingTier] || 1;
+  document.querySelectorAll('.tpl-pill').forEach(p => {
+    if (!p.classList.contains('selected') && selectedTemplates.length >= max) {
+      p.classList.add('disabled');
+    } else {
+      p.classList.remove('disabled');
+    }
+  });
+}
+
+function updateSceneCountLabel() {
+  const max = TIER_MAX[pendingTier] || 1;
+  const lbl = document.getElementById('scene-count-label');
+  if (lbl) lbl.textContent = '(' + selectedTemplates.length + ' of ' + max + ' selected)';
 }
 
 loadOrders();
