@@ -288,10 +288,94 @@ STAGING_TEMPLATES = [
     },
 ]
 
+JEWELRY_TEMPLATES = [
+    {
+        "name": "marble_gold",
+        "prompt": (
+            "professional product photograph of this exact piece of jewelry "
+            "displayed on a smooth white Carrara marble surface with soft gold "
+            "accents, a single dried ivory rose placed beside it, soft diffused "
+            "studio light from the left creating gentle shadows, luxury editorial "
+            "styling, clean and elegant composition, shallow depth of field"
+        ),
+    },
+    {
+        "name": "dark_velvet",
+        "prompt": (
+            "professional product photograph of this exact piece of jewelry "
+            "resting on a rich deep navy velvet display surface, dramatic moody "
+            "side lighting casting subtle shadows, a small crystal cluster softly "
+            "blurred in the background, luxury jeweler aesthetic, rich jewel "
+            "tones, high-end editorial composition"
+        ),
+    },
+    {
+        "name": "linen_botanical",
+        "prompt": (
+            "professional product photograph of this exact piece of jewelry "
+            "laid on rumpled cream linen fabric, small dried lavender sprigs "
+            "and chamomile flowers scattered nearby, soft natural window light "
+            "from above, artisan handmade aesthetic, warm neutral tones, "
+            "minimal and delicate composition"
+        ),
+    },
+    {
+        "name": "vintage_vanity",
+        "prompt": (
+            "professional product photograph of this exact piece of jewelry "
+            "placed on a vintage antique silver trinket tray on a dark walnut "
+            "wood surface, a few small pearls and a single dried rose petal "
+            "beside it, warm nostalgic afternoon light, romantic heirloom "
+            "aesthetic, shallow depth of field with rich warm tones"
+        ),
+    },
+    {
+        "name": "pressed_flowers",
+        "prompt": (
+            "professional product photograph of this exact piece of jewelry "
+            "displayed on textured watercolor paper with delicate pressed flowers "
+            "— dried violets, tiny daisies, and ferns — arranged artfully around "
+            "it, soft diffused overhead natural light, botanical art studio "
+            "aesthetic, pastel and cream tones, ultra-delicate composition"
+        ),
+    },
+    {
+        "name": "raw_crystal",
+        "prompt": (
+            "professional product photograph of this exact piece of jewelry "
+            "resting on a natural dark slate surface, rough raw amethyst and "
+            "quartz crystal clusters arranged beside it, cool natural overhead "
+            "light with soft shadows, earthy mineral gemstone aesthetic, "
+            "organic textures, editorial product styling"
+        ),
+    },
+    {
+        "name": "kraft_ribbon_gift",
+        "prompt": (
+            "professional product photograph of this exact piece of jewelry "
+            "presented on unfolded kraft paper with a cream satin ribbon bow, "
+            "a small sprig of fresh eucalyptus beside it, soft warm afternoon "
+            "window light, gifting occasion styling, warm neutral tones, "
+            "clean artisan presentation"
+        ),
+    },
+    {
+        "name": "white_editorial",
+        "prompt": (
+            "professional product photograph of this exact piece of jewelry "
+            "on a pure white seamless surface, a single dried pampas grass "
+            "stem elegantly placed beside it, bright clean high-key studio "
+            "lighting with soft shadows, minimalist luxury editorial styling, "
+            "crisp modern composition, magazine-quality product shot"
+        ),
+    },
+]
+
 PRODUCT_TEMPLATES = {
     "soap": COZY_RUSTIC_TEMPLATES,
     "candle": CANDLE_TEMPLATES,
     "staging": STAGING_TEMPLATES,
+    "jewelry": JEWELRY_TEMPLATES,
 }
 
 

@@ -61,6 +61,21 @@ Return ONLY valid JSON, no markdown fences:
 }
 Be strict. If furniture looks fake, walls are warped, or the room feels uncanny, pass = false.""",
 
+    "jewelry": """You are reviewing an AI-generated styled product photograph of a piece of jewelry for a paying client. Score strictly.
+
+Return ONLY valid JSON, no markdown fences:
+{
+  "product_fidelity": integer 1-10 (does the jewelry look real, coherent, undistorted? Metal and stone details intact?),
+  "composition": integer 1-10 (professional flatlay or display composition?),
+  "lighting": integer 1-10 (realistic lighting that makes the piece look desirable?),
+  "aesthetic_match": integer 1-10 (matches the intended elegant/artisan style?),
+  "artifact_free": integer 1-10 (no warped shapes, duplicated elements, or AI weirdness?),
+  "pass": boolean (true ONLY if all scores 7+ and no dealbreakers),
+  "issues": array of short problem strings (empty if none),
+  "best_use": one of "hero_shot" | "secondary_shot" | "do_not_ship"
+}
+Be strict. If the jewelry shape is distorted, stones look wrong, or metal texture is unnatural, pass = false.""",
+
     "default": """You are reviewing an AI-generated product image for a paying client. Score strictly.
 
 Return ONLY valid JSON, no markdown fences:

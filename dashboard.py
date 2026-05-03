@@ -28,6 +28,7 @@ PRODUCTS = {
     "soap":    {"label": "Soap",    "icon": "🧼"},
     "candle":  {"label": "Candle",  "icon": "🕯️"},
     "staging": {"label": "Staging", "icon": "🏠"},
+    "jewelry": {"label": "Jewelry", "icon": "💍"},
 }
 
 TIERS = {
@@ -409,6 +410,10 @@ header h1 { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: -0.3
         <span>Staging</span>
         <span class="nav-count" id="count-staging">0</span>
       </div>
+      <div class="nav-item" data-product="jewelry" onclick="selectSection('jewelry',this)">
+        <span>Jewelry</span>
+        <span class="nav-count" id="count-jewelry">0</span>
+      </div>
       <div class="sidebar-gap"></div>
       <button class="new-btn" onclick="openGlobalNew()">+ New Order</button>
     </div>
@@ -439,6 +444,7 @@ header h1 { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: -0.3
               <option value="soap">Soap</option>
               <option value="candle">Candle</option>
               <option value="staging">Staging</option>
+              <option value="jewelry">Jewelry</option>
             </select>
           </div>
           <div class="qf-field">
@@ -610,7 +616,7 @@ async function loadOrders() {
 function updateCounts() {
   const all = Object.values(allOrders);
   document.getElementById('count-all').textContent = all.length;
-  ['soap','candle','staging'].forEach(p => {
+  ['soap','candle','staging','jewelry'].forEach(p => {
     const el = document.getElementById('count-' + p);
     if (el) el.textContent = all.filter(o => o.product === p).length;
   });
@@ -630,7 +636,7 @@ function renderOrders() {
 }
 
 function renderCard(o) {
-  const prodLabel = {soap:'Soap',candle:'Candle',staging:'Staging'}[o.product] || o.product;
+  const prodLabel = {soap:'Soap',candle:'Candle',staging:'Staging',jewelry:'Jewelry'}[o.product] || o.product;
   const tierLabel = {basic:'Basic',standard:'Standard',premium:'Premium'}[o.tier] || o.tier;
   const badgeMap = {
     queued:  '<span class="badge badge-queued">Queued</span>',
