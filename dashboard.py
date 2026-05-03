@@ -31,8 +31,8 @@ PRODUCTS = {
 }
 
 TIERS = {
-    "basic":    {"template_count": 1, "variations": 5,  "label": "Basic",    "desc": "5 images · 1 scene"},
-    "standard": {"template_count": 2, "variations": 5,  "label": "Standard", "desc": "10 images · 2 scenes"},
+    "basic":    {"template_count": 1, "variations": 4,  "label": "Basic",    "desc": "4 images · 1 scene"},
+    "standard": {"template_count": 2, "variations": 4,  "label": "Standard", "desc": "8 images · 2 scenes"},
     "premium":  {"template_count": 8, "variations": 3,  "label": "Premium",  "desc": "24 images · 8 scenes"},
 }
 

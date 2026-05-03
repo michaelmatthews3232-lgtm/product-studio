@@ -20,7 +20,7 @@ load_dotenv()
 # ── Model identifiers ────────────────────────────────────────────────────────
 
 MODELS = {
-    "detect": "google/gemini-flash-1.5",
+    "detect": "anthropic/claude-haiku-3",
     "parse":  "anthropic/claude-haiku-3",
     "qa":     "claude-sonnet-4-5",  # called direct via Anthropic SDK
 }
